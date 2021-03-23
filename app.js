@@ -966,7 +966,7 @@ let gameState = {
 
 let hasSnakeCrashed, snakeOutOfBounds;
 let newApple, newSnakeHead;
-
+let scoreCounter = 0
 
 let snake = {
   body: [
@@ -984,8 +984,11 @@ function buildInitialState() {
   renderState();
   buildApple();
   buildSnake();
-  
-  
+}
+
+function hasEaten(){
+  buildApple()
+  updateScore()
 }
 
 // render the state
@@ -1024,11 +1027,9 @@ function buildSnake() {
   });
     
   let equals = (newApple.length == newSnakeHead.length) && newApple.every(function(element, index){
-      console.log(element)
-      console.log(newSnakeHead[index])
     return element === newSnakeHead[index]
   })
-  equals && buildApple()
+  equals && hasEaten()
 }
 
 function buildApple() {
@@ -1049,6 +1050,13 @@ function buildApple() {
   );
   segmentElemApple.addClass("apple");
 
+}
+
+function updateScore(){
+  scoreCounter = scoreCounter + 100
+  console.log(scoreCounter)
+  // let div = $('<div class="score">').append(scoreCounter)
+  // $('#app').append(div)
 }
 
 
