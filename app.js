@@ -974,7 +974,8 @@ let snake = {
     [15, 14],
     [15, 15],
     [15, 16],
-    [15, 17],
+    [15, 17]
+
   ],
   nextDirection: [0, -1],
   apple: [10, 5],
@@ -987,6 +988,7 @@ function buildInitialState() {
 }
 
 function hasEaten(){
+  snake.body.push(newApple)
   buildApple()
   updateScore()
 }
