@@ -966,9 +966,11 @@ let gameState = {
       "",
     ],
   ],
+  
 };
 
-let snakeCrashed = false, snakeOutOfBounds = false;
+let startGame;
+let snakeCrashed, snakeOutOfBounds;
 let newApple, newSnakeHead;
 let scoreCounter = 0;
 
@@ -1019,10 +1021,7 @@ function buildSnake() {
     segmentElemSnake = $(`[data-x="${coordinatex}"][data-y="${coordinatey}"]`);
     segmentElemSnake.addClass("snake");
   });
-  
-  
 }
-
 
 
 function buildApple() {
@@ -1111,7 +1110,7 @@ function checkGameOver() {
   checkSnakeOutOfBounds()
   
   if (snakeCrashed === true || snakeOutOfBounds === true){
-    console.log("Gameover")
+    clearInterval(startGame)
 
   }
 }
@@ -1119,10 +1118,20 @@ function checkGameOver() {
 function tick() {
   buildSnake();
   checkGameOver()
-  checkSnakeAte()
+  checkSnakeAte() 
 }
 
-//setInterval(tick, 100); // 1000 / 30 as close to 30 frames per second as possible
+function gameOn(){
+    startGame = setInterval(tick, 100);
+    return startGame
+}
+
+$(window).on("load", function (event){
+    if(startGame === undefined || startGame === null){
+      gameOn()
+    }
+})
+
 
 $(window).on("keydown", function (event) {
   //left
