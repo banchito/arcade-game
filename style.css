@@ -8,8 +8,8 @@
     display: grid;
     height: 100vh;
     width: 100%;
-    grid-template-rows: 1fr 30fr 1fr;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     background-image: linear-gradient(to bottom right, rgb(136, 255, 0), rgb(0, 255, 170));
     
 }
@@ -37,3 +37,22 @@
     background-color : red;
     border-radius: 50%;
 }
+
+.score{
+    display: grid;
+    grid-row: 2 / 3;
+    grid-column: 1;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+
+/* #title, #players { */
+    /* background-color: white; */
+    /* width: 64%; */
+    /* font-family: sans-serif; */
+    /* font-size: 20px; */
+    /* text-align: center; */
+/* } */
