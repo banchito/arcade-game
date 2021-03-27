@@ -167,14 +167,41 @@ function hasEaten() {
 function addToScore() {
   scoreCounter += 100;
   
-  $('.score').text(`Your current score is: ${scoreCounter}`)
+  $('.points').text(`Your current score is: ${scoreCounter}`)
 }
 
+//Builds the LeaderBoard
+function higestScoresLeaderboard(){
+  
+  $('.firstPlaceName').empty()
+  $('.firstPlaceScore').empty()
+
+  $('.secondPlaceName').empty()
+  $('.secondPlaceScore').empty()
+
+  $('.thirdPlaceName' ).empty()
+  $('.thirdPlaceScore').empty()
+
+  let firstPlayer = scores[0];
+  let secondPlayer = scores[1];
+  let thirdPlayer = scores[2];
+
+  let firstPlaceName = $('<span class="firstPlaceName">').text(`${firstPlayer.name}`)
+  let firstPlaceScore = $('<span class="firstPlaceScore">').text(`${firstPlayer.score}`)
+
+  let secondPlaceName = $('<span class="secondPlaceName">').text(`${secondPlayer.name}`)
+  let secondPlaceScore = $('<span class="secondPlaceScore">').text(`${secondPlayer.score}`)
+
+  let thirdPlaceName = $('<span class="thirdPlaceName">').text(`${thirdPlayer.name}`)
+  let thirdPlaceScore = $('<span class="thirdPlaceScore">').text(`${thirdPlayer.score}`)
+
+  $('.leaderboard').append(firstPlaceName, firstPlaceScore, secondPlaceName, secondPlaceScore, thirdPlaceName, thirdPlaceScore)
+}
 
 //When gameover resets the score to 0
 function resetScore(){
   scoreCounter = 0;
-  $('.score').text(`Your current score is: ${scoreCounter}`)
+  $('.points').text(`Your current score is: ${scoreCounter}`)
 }
 
 
@@ -186,7 +213,6 @@ function checkGameOver() {
   if (snakeCrashed === true || snakeOutOfBounds === true){
     clearInterval(startGame)
     $(".modal").addClass("open");
-    
   }
 }
 
@@ -199,7 +225,6 @@ function checkSnakeCrashed() {
     return node[0] === newSnakeHead[0] && node[1] === newSnakeHead[1];
   });
   result && (snakeCrashed = true)
-  
 }
 
 
@@ -209,8 +234,7 @@ function checkSnakeOutOfBounds(){
    const headY  = newSnakeHead[1]
 
    if(headX < 0 || headX > 29 || headY < 0 || headY > 29){
-      snakeOutOfBounds = true
-     
+      snakeOutOfBounds = true  
    }
 }
 
@@ -230,6 +254,7 @@ function storeScore(){
 // Retrieves scores from local Storage and update global variable holding the scores. If local storage null sets default leaderboard
 function fetchScores(){
   scores = (localStorage.getItem("scores") === null ? fetchDefaultScores() : JSON.parse(localStorage.getItem("scores")));
+  higestScoresLeaderboard()
 }
 
 
@@ -237,8 +262,16 @@ function fetchScores(){
 function fetchDefaultScores(){
   scores = [
     {
-      name: "Your Name", 
-      score: 0
+      name: "AAA", 
+      score: 1
+    },
+    {
+      name: "BBB", 
+      score: 2
+    },
+    {
+      name: "CCC", 
+      score: 3
     }
   ]  
   return scores
@@ -267,6 +300,7 @@ function gameOn(){
 $(window).on("load", function (event){
     if(startGame === undefined || startGame === null){
       buildInitialState()
+      higestScoresLeaderboard()
       gameOn()
     }
 })
@@ -285,8 +319,8 @@ $('.save-score').click(function(event){
   
   scores.push(scoreObj)
   storeScore()
+  higestScoresLeaderboard()
   $(".gameOver-form").trigger("reset");
-  
 })
 
 

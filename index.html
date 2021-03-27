@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <title>Snake Game</title>
 </head>
 <body>
     <main id="app">
-        <div class="score">Your current Score is: 0</div>
+        <div style="font-family: 'Staatliches', cursive;" class="points">Your current Score is: 0</div>
+        <div class="leaderboard">
+        
+            <h1 style="font-family: 'Staatliches', cursive;" class="leaderboards-title">Higest Scores</h1>
+            <h2 style="font-family: 'Staatliches', cursive;" class="player">Player</h2>
+            <h2 style="font-family: 'Staatliches', cursive;" class="score">Score</h2>
+        
+        </div>
         <div id="canvas"></div>
         <div class="modal">
             <div class="content">
-              <h3>Game Over</h3>
+              <h3 style="font-family: 'Staatliches', cursive;">Game Over</h3>
               <form class="gameOver-form" action="" method="">
                 <label for="todo-title">Add your name and save your score</label>
                 <input type="text" id="player-name" required>
-                
                 <div class="actions">
                   <button class="action save-score">
                     <span class="action-text">Save score</span>
