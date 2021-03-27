@@ -94,7 +94,7 @@ function buildSnake() {
     const coordinatex = coordinates[0];
     const coordinatey = coordinates[1];
 
-    segmentElemSnake = $(`[data-x="${coordinatex}"][data-y="${coordinatey}"]`);
+    let segmentElemSnake = $(`[data-x="${coordinatex}"][data-y="${coordinatey}"]`);
     segmentElemSnake.addClass("snake");
   });
 }
@@ -114,7 +114,7 @@ function buildApple() {
   const appleCoordinateY = snake.apple[1];
   newApple = [appleCoordinateX, appleCoordinateY];
 
-  segmentElemApple = $(
+  let segmentElemApple = $(
     `[data-x="${appleCoordinateX}"][data-y="${appleCoordinateY}"]`
   );
   segmentElemApple.hasClass("snake") ? buildApple() : segmentElemApple.addClass("apple");
@@ -367,25 +367,3 @@ $(window).on("keydown", function (event) {
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
