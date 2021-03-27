@@ -171,7 +171,7 @@ function addToScore() {
 }
 
 //Builds the LeaderBoard
-function higestScoresLeaderboard(){
+function highestScoresLeaderboard(){
   
   $('.firstPlaceName').empty()
   $('.firstPlaceScore').empty()
@@ -254,7 +254,7 @@ function storeScore(){
 // Retrieves scores from local Storage and update global variable holding the scores. If local storage null sets default leaderboard
 function fetchScores(){
   scores = (localStorage.getItem("scores") === null ? fetchDefaultScores() : JSON.parse(localStorage.getItem("scores")));
-  higestScoresLeaderboard()
+  highestScoresLeaderboard()
 }
 
 
@@ -300,7 +300,7 @@ function gameOn(){
 $(window).on("load", function (event){
     if(startGame === undefined || startGame === null){
       buildInitialState()
-      higestScoresLeaderboard()
+      highestScoresLeaderboard()
       gameOn()
     }
 })
@@ -319,7 +319,7 @@ $('.save-score').click(function(event){
   
   scores.push(scoreObj)
   storeScore()
-  higestScoresLeaderboard()
+  highestScoresLeaderboard()
   $(".gameOver-form").trigger("reset");
 })
 
